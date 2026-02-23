@@ -6,6 +6,8 @@ url: https://itdojp.github.io
 baseurl: /incident-response-basics-book
 repository: https://github.com/itdojp/incident-response-basics-book
 markdown: kramdown
+kramdown:
+  input: GFM
 highlighter: rouge
 plugins:
 - jekyll-feed
