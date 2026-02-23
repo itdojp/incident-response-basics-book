@@ -14,15 +14,15 @@
 ### 前提
 
 - Node.js（`npm`）
-- Ruby（Bundler 経由で Jekyll を実行）
+- （推奨）Podman または Docker（Ruby が無い環境でも `npm start` / `npm run build` を実行可能）
+- Ruby + Bundler（導入済みの場合はそれを利用）
 
 ### 手順
 
 ```bash
 npm install
 
-# （初回のみ）Jekyll 実行環境
-# 例: Ruby/Bundler を導入後、bundle install
+# Ruby/Bundler が無い場合は Podman/Docker を利用します（初回は image pull + bundle install が走ります）
 
 # プレビュー
 npm start
