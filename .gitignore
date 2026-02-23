@@ -1,0 +1,14 @@
+# Node
+node_modules/
+
+# Jekyll
+_site/
+.jekyll-cache/
+.sass-cache/
+
+# Ruby
+.bundle/
+vendor/bundle/
+
+# OS
+.DS_Store

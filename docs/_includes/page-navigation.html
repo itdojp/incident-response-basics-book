@@ -1,0 +1,45 @@
+{% assign ordered = site.pages | where: 'layout', 'book' | where_exp: 'p', 'p.order != nil' | sort: 'order' %}
+{% assign current_index = nil %}
+{% for p in ordered %}
+  {% if p.url == page.url %}
+    {% assign current_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+
+{% if current_index == nil %}
+  {% break %}
+{% endif %}
+
+{% if page.url == '/' %}
+  {% break %}
+{% endif %}
+
+{% assign prev_index = current_index | minus: 1 %}
+{% assign next_index = current_index | plus: 1 %}
+{% assign prev = nil %}
+{% assign next = nil %}
+
+{% if prev_index >= 0 %}
+  {% assign prev = ordered[prev_index] %}
+{% endif %}
+{% if next_index < ordered.size %}
+  {% assign next = ordered[next_index] %}
+{% endif %}
+
+<nav class="pager" aria-label="ページナビゲーション">
+  <div class="pager-inner">
+    <div class="pager-item">
+      {% if prev %}
+      <a class="pager-link" href="{{ prev.url | relative_url }}" rel="prev">← {{ prev.title | escape }}</a>
+      {% endif %}
+    </div>
+    <div class="pager-item pager-home">
+      <a class="pager-link" href="{{ '/' | relative_url }}">目次</a>
+    </div>
+    <div class="pager-item pager-next">
+      {% if next %}
+      <a class="pager-link" href="{{ next.url | relative_url }}" rel="next">{{ next.title | escape }} →</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>

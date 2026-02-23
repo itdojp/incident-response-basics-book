@@ -1,0 +1,22 @@
+title: インシデント対応の基本（仮）
+description: トラブルシューティングからインシデント運用、連絡/復旧判断、ポストモーテムまでの基本フレームを扱う。
+author: 株式会社アイティードゥ
+lang: ja
+url: https://itdojp.github.io
+baseurl: /incident-response-basics-book
+repository: https://github.com/itdojp/incident-response-basics-book
+markdown: kramdown
+highlighter: rouge
+plugins:
+- jekyll-feed
+- jekyll-sitemap
+- jekyll-seo-tag
+- jekyll-relative-links
+- jekyll-optional-front-matter
+defaults:
+- scope:
+    path: ''
+  values:
+    layout: book
+permalink: pretty
+license_text: CC BY-NC-SA 4.0
