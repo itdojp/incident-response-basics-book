@@ -119,6 +119,12 @@ html {
     scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 body {
     margin: 0;
     font-family: var(--font-sans);
@@ -449,6 +455,82 @@ a:hover {
     display: block;
 }
 
+/* Search Results (in-page) */
+.search-results-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    width: 100%;
+    display: block;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    transition: var(--transition);
+}
+
+.search-result-item:hover,
+.search-result-item:focus-visible {
+    background: var(--bg-secondary);
+    outline: none;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+}
+
+.search-result-snippet {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.search-no-results {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.search-more {
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+mark {
+    background: rgba(255, 235, 59, 0.4);
+    color: inherit;
+    padding: 0.125rem 0;
+    border-radius: 2px;
+}
+
+[data-theme="dark"] mark {
+    background: rgba(255, 235, 59, 0.2);
+}
+
+.search-highlight {
+    animation: highlight 2s ease;
+}
+
+@keyframes highlight {
+    0% { background: rgba(255, 235, 59, 0.4); }
+    100% { background: transparent; }
+}
+
 /* Buttons */
 .sidebar-toggle,
 .theme-toggle {
@@ -509,39 +591,6 @@ a:hover {
     color: var(--primary-color);
 }
 
-/* Copy Button Styles */
-.copy-button {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: var(--transition);
-    z-index: 10;
-}
-
-.copy-button:hover {
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
-}
-
-.copy-button.copied {
-    background: var(--success-color);
-    color: white;
-    border-color: var(--success-color);
-}
-
-.copy-button.error {
-    background: var(--danger-color);
-    color: white;
-    border-color: var(--danger-color);
-}
-
 /* Legacy mobile styles removed - using CSS-only implementation in mobile-responsive.css */
 
 @media (max-width: 768px) {
@@ -573,6 +622,93 @@ a:hover {
 .page-navigation {
     margin-top: auto;
     padding-top: 3rem;
+}
+
+/* Previous/Next Navigation */
+.book-navigation {
+    margin: 2rem 0;
+    padding: 1rem;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.book-navigation .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.book-navigation .nav-prev,
+.book-navigation .nav-next,
+.book-navigation .nav-home {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    background: var(--bg-primary, #fff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.book-navigation .nav-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--bg-tertiary, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.book-navigation .nav-prev {
+    flex: 1;
+}
+
+.book-navigation .nav-next {
+    flex: 1;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.book-navigation .nav-home {
+    flex: 0 0 auto;
+    justify-content: center;
+}
+
+.book-navigation .label {
+    font-weight: 600;
+    margin: 0 0.25rem;
+}
+
+.book-navigation .title {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .book-navigation .chapter-nav {
+        flex-wrap: wrap;
+    }
+
+    .book-navigation .nav-prev,
+    .book-navigation .nav-next {
+        flex: 1 1 45%;
+    }
+
+    .book-navigation .nav-home {
+        flex: 1 1 100%;
+        order: -1;
+    }
+
+    .book-navigation .title {
+        display: none;
+    }
 }
 
 /* Print Styles */

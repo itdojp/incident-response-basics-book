@@ -90,7 +90,7 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
   capturing all pages due to `contains`.
   {%- endcomment -%}
   {%- for item in nav_items -%}
-    {%- assign item_url = item.path | default: item.url -%}
+    {%- assign item_url = item.url | default: item.path -%}
     {%- if item_url and item_url != '' -%}
       {%- assign item_url_n = item_url -%}
       {%- if _baseurl and _baseurl != '' -%}
@@ -200,15 +200,3 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
 </nav>
 {% endunless %}
 
-<style>
-.book-navigation { margin: 2rem 0; padding: 1rem; border-top: 1px solid var(--border-color, #e5e7eb); }
-.chapter-nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-.nav-prev, .nav-next, .nav-home { display: flex; align-items: center; padding: 0.75rem 1.25rem; background: var(--bg-primary, #fff); border: 1px solid var(--border-color, #e5e7eb); border-radius: 6px; text-decoration: none; color: inherit; }
-.nav-disabled { opacity: .5; cursor: not-allowed; background: var(--bg-tertiary, #f9fafb); border: 1px solid var(--border-color, #e5e7eb); border-radius: 6px; padding: 0.75rem 1.25rem; display: flex; align-items: center; }
-.nav-prev { flex: 1; }
-.nav-next { flex: 1; justify-content: flex-end; text-align: right; }
-.nav-home { flex: 0 0 auto; justify-content: center; }
-.label { font-weight: 600; margin: 0 .25rem; }
-.title { font-size: .9rem; opacity: .8; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-@media (max-width: 768px) { .chapter-nav { flex-wrap: wrap; } .nav-prev, .nav-next { flex: 1 1 45%; } .nav-home { flex: 1 1 100%; order: -1; } .title { display: none; } }
-</style>

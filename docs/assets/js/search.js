@@ -72,10 +72,10 @@
                 const highlightedSnippet = highlightText(snippet, query);
                 
                 return `
-                    <div class="search-result-item" data-id="${result.id}">
+                    <button type="button" class="search-result-item" data-id="${result.id}">
                         <div class="search-result-title">${highlightedTitle}</div>
                         <div class="search-result-snippet">${highlightedSnippet}</div>
-                    </div>
+                    </button>
                 `;
             }).join('');
             
@@ -107,8 +107,30 @@
     
     // Highlight search term in text
     function highlightText(text, query) {
-        const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
-        return text.replace(regex, '<mark>$1</mark>');
+        const q = String(query || '').trim();
+        const source = String(text || '');
+        if (!q) return escapeHtml(source);
+
+        const regex = new RegExp(escapeRegex(q), 'gi');
+        let out = '';
+        let lastIndex = 0;
+        let match;
+
+        while ((match = regex.exec(source)) !== null) {
+            const start = match.index;
+            const end = start + match[0].length;
+            out += escapeHtml(source.slice(lastIndex, start));
+            out += '<mark>' + escapeHtml(source.slice(start, end)) + '</mark>';
+            lastIndex = end;
+
+            // Avoid infinite loops on zero-length matches.
+            if (match[0].length === 0) {
+                regex.lastIndex++;
+            }
+        }
+
+        out += escapeHtml(source.slice(lastIndex));
+        return out;
     }
     
     // Show search results
@@ -200,81 +222,7 @@
             }
         });
     }
-    
-    // Add styles
-    const styles = `
-        <style>
-        .search-results-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        .search-result-item {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            border-bottom: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-        
-        .search-result-item:hover {
-            background: var(--bg-secondary);
-        }
-        
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-        
-        .search-result-title {
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-            color: var(--text-primary);
-        }
-        
-        .search-result-snippet {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        
-        .search-no-results {
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-secondary);
-        }
-        
-        .search-more {
-            padding: 0.75rem 1rem;
-            text-align: center;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
-        }
-        
-        mark {
-            background: rgba(255, 235, 59, 0.4);
-            color: inherit;
-            padding: 0.125rem 0;
-            border-radius: 2px;
-        }
-        
-        [data-theme="dark"] mark {
-            background: rgba(255, 235, 59, 0.2);
-        }
-        
-        .search-highlight {
-            animation: highlight 2s ease;
-        }
-        
-        @keyframes highlight {
-            0% { background: rgba(255, 235, 59, 0.4); }
-            100% { background: transparent; }
-        }
-        </style>
-    `;
-    
-    // Inject styles
-    document.head.insertAdjacentHTML('beforeend', styles);
-    
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initSearch);

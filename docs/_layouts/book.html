@@ -8,10 +8,6 @@
     
     <title>{% if page.title %}{{ page.title | escape }} - {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
     
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <!-- CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/syntax-highlighting.css' | relative_url }}">
@@ -52,7 +48,7 @@
     {% assign repo_branch = site.repository_branch | default: 'main' %}
 
     <!-- CSS-only sidebar toggle (hidden checkbox for state management) -->
-    <input type="checkbox" id="sidebar-toggle-checkbox" class="sidebar-toggle-checkbox" aria-hidden="true">
+    <input type="checkbox" id="sidebar-toggle-checkbox" class="sidebar-toggle-checkbox" aria-hidden="true" tabindex="-1">
     
     <div class="book-layout">
         <!-- Header -->
@@ -170,7 +166,7 @@
     <label for="sidebar-toggle-checkbox" class="book-sidebar-overlay" id="sidebar-overlay" aria-label="Close sidebar"></label>
 
     <!-- Lightweight code copy - no MutationObserver to prevent freeze -->
-    <script async src="{{ '/assets/js/code-copy-lightweight.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/code-copy-lightweight.js' | relative_url }}"></script>
     <script defer src="{{ '/assets/js/theme.js' | relative_url }}"></script>
     <script defer src="{{ '/assets/js/search.js' | relative_url }}"></script>
     <script>
@@ -178,18 +174,46 @@
             var cb = document.getElementById('sidebar-toggle-checkbox');
             if (!cb) return;
 
-	            // Reset sidebar checkbox on page load to prevent stuck open state.
-	            cb.checked = false;
+            // Reset sidebar checkbox on page load to prevent stuck open state.
+            cb.checked = false;
 
-	            function normalizePath(p) {
-	                var path = String(p || '').replace(/index\.html$/, '');
-	                // Remove trailing slashes for non-root paths so `/foo` and `/foo/` compare equal.
-	                if (path.length > 1) {
-	                    path = path.replace(/\/+$/, '');
-	                }
-	                // Ensure we always return at least '/'.
-	                return path || '/';
-	            }
+            // Make the label-based toggle keyboard-accessible (Space/Enter).
+            var toggleLabel = document.querySelector('label.sidebar-toggle');
+            if (toggleLabel) {
+                var syncExpanded = function() {
+                    try {
+                        toggleLabel.setAttribute('aria-expanded', cb.checked ? 'true' : 'false');
+                    } catch (_) {}
+                };
+
+                syncExpanded();
+                cb.addEventListener('change', syncExpanded);
+
+                toggleLabel.addEventListener('keydown', function(event) {
+                    var key = event.key || event.code;
+                    if (key === ' ' || key === 'Spacebar' || key === 'Space' || key === 'Enter') {
+                        event.preventDefault();
+                        cb.checked = !cb.checked;
+                        try {
+                            cb.dispatchEvent(new Event('change', { bubbles: true }));
+                        } catch (_) {
+                            var ev = document.createEvent('Event');
+                            ev.initEvent('change', true, true);
+                            cb.dispatchEvent(ev);
+                        }
+                    }
+                });
+            }
+
+            function normalizePath(p) {
+                var path = String(p || '').replace(/index\.html$/, '');
+                // Remove trailing slashes for non-root paths so `/foo` and `/foo/` compare equal.
+                if (path.length > 1) {
+                    path = path.replace(/\/+$/, '');
+                }
+                // Ensure we always return at least '/'.
+                return path || '/';
+            }
 
             function findActiveTocLink() {
                 var current = normalizePath(window.location.pathname);
@@ -206,10 +230,10 @@
                 return actives[0];
             }
 
-	            function ensureActiveTocVisible() {
-	                if (!cb.checked) return;
-	                var active = findActiveTocLink();
-	                if (!active) return;
+            function ensureActiveTocVisible() {
+                if (!cb.checked) return;
+                var active = findActiveTocLink();
+                if (!active) return;
 
                 var sidebar = active.closest('.book-sidebar') || document.getElementById('sidebar');
                 if (!sidebar) return;
@@ -217,15 +241,15 @@
                 try {
                     var linkRect = active.getBoundingClientRect();
                     var sidebarRect = sidebar.getBoundingClientRect();
-	                    var margin = 8;
-	                    var top = sidebarRect.top + margin;
-	                    var bottom = sidebarRect.bottom - margin;
-	                    // Scroll when any part of the active link is outside the visible bounds.
-	                    var outOfView = linkRect.top < top || linkRect.bottom > bottom;
+                    var margin = 8;
+                    var top = sidebarRect.top + margin;
+                    var bottom = sidebarRect.bottom - margin;
+                    // Scroll when any part of the active link is outside the visible bounds.
+                    var outOfView = linkRect.top < top || linkRect.bottom > bottom;
 
-	                    if (outOfView && typeof active.scrollIntoView === 'function') {
-	                        active.scrollIntoView({ block: 'center', behavior: 'auto' });
-	                    }
+                    if (outOfView && typeof active.scrollIntoView === 'function') {
+                        active.scrollIntoView({ block: 'center', behavior: 'auto' });
+                    }
                 } catch (_) {}
             }
 

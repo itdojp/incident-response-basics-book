@@ -219,6 +219,12 @@ pre:focus-within .copy-button,
     border-color: var(--success-color);
 }
 
+.copy-button.error {
+    background: var(--danger-color);
+    color: white;
+    border-color: var(--danger-color);
+}
+
 /* Diff Highlighting */
 .diff-addition {
     background-color: rgba(34, 134, 58, 0.1);
