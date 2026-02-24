@@ -140,7 +140,7 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
 <nav class="book-navigation" aria-label="Chapter navigation">
   <div class="chapter-nav">
     {% if previous_item %}
-      {%- assign prev_url = previous_item.path | default: previous_item.url -%}
+      {%- assign prev_url = previous_item.url | default: previous_item.path -%}
       {%- assign _baseurl = site.baseurl | default: '' -%}
       {%- assign prev_url_n = prev_url -%}
       {%- if _baseurl and _baseurl != '' -%}
@@ -157,7 +157,7 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
       <a href="{{ prev_url | relative_url }}" class="nav-prev" rel="prev">
         <span class="arrow" aria-hidden="true">←</span>
         <span class="label">前へ</span>
-        <span class="title">{{ prev_page.title | default: prev_data.title | default: prev_data.label | default: previous_item.title | default: previous_item.name | default: "前のページ" }}</span>
+        <span class="title">{{ prev_page.title | default: prev_data.title | default: prev_data.label | default: previous_item.title | default: previous_item.name | default: "前のページ" | escape }}</span>
       </a>
     {% else %}
       <span class="nav-disabled nav-prev">
@@ -171,7 +171,7 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
     </a>
 
     {% if next_item %}
-      {%- assign next_url = next_item.path | default: next_item.url -%}
+      {%- assign next_url = next_item.url | default: next_item.path -%}
       {%- assign _baseurl = site.baseurl | default: '' -%}
       {%- assign next_url_n = next_url -%}
       {%- if _baseurl and _baseurl != '' -%}
@@ -187,7 +187,7 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
       {%- assign next_page = site.pages | where: "url", next_url_n | first -%}
       <a href="{{ next_url | relative_url }}" class="nav-next" rel="next">
         <span class="label">次へ</span>
-        <span class="title">{{ next_page.title | default: next_data.title | default: next_data.label | default: next_item.title | default: next_item.name | default: "次のページ" }}</span>
+        <span class="title">{{ next_page.title | default: next_data.title | default: next_data.label | default: next_item.title | default: next_item.name | default: "次のページ" | escape }}</span>
         <span class="arrow" aria-hidden="true">→</span>
       </a>
     {% else %}
@@ -199,4 +199,3 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
   </div>
 </nav>
 {% endunless %}
-
