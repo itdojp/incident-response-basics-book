@@ -1,0 +1,28 @@
+# Book-formatter compliant navigation structure
+
+chapters:
+  - title: "第1章：トラブルシューティングの基本フレーム（症状/影響/再現/仮説）"
+    path: "/chapters/chapter-01/"
+  - title: "第2章：情報収集（変更点/影響範囲/再現条件/証跡）"
+    path: "/chapters/chapter-02/"
+  - title: "第3章：ログ・メトリクス・トレースの当たり方（最低限）"
+    path: "/chapters/chapter-03/"
+  - title: "第4章：切り分け戦略（範囲縮小/比較/安全な検証）"
+    path: "/chapters/chapter-04/"
+  - title: "第5章：インシデント運用（Severity/役割/タイムライン）"
+    path: "/chapters/chapter-05/"
+  - title: "第6章：連絡とエスカレーション（判断基準/情報粒度）"
+    path: "/chapters/chapter-06/"
+  - title: "第7章：復旧とロールバック判断（暫定/恒久、リスク管理）"
+    path: "/chapters/chapter-07/"
+  - title: "第8章：ポストモーテム（真因/再発防止/検知・手順改善）"
+    path: "/chapters/chapter-08/"
+
+appendices:
+  - title: "テンプレ集"
+    path: "/appendices/templates/"
+  - title: "チェックリスト集"
+    path: "/appendices/checklists/"
+  - title: "参考文献"
+    path: "/appendices/references/"
+
