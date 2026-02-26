@@ -13,5 +13,6 @@ order: 900
 - [インシデント記録](incident-log/)
 - [タイムライン](timeline/)
 - [状況共有](status-update/)
+- [これはインシデントか？（最小判断フロー）](is-incident/)
 - [エスカレーション](escalation/)
 - [ポストモーテム](postmortem/)
