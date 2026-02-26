@@ -27,6 +27,6 @@ order: 906
 
 ## 関連
 
-- Severity/役割の整理: [第5章]({{ '/chapters/chapter-05/' | relative_url }})
-- 連絡/エスカレーション: [第6章]({{ '/chapters/chapter-06/' | relative_url }})
-- 状況共有テンプレ: [状況共有]({{ '/appendices/templates/status-update/' | relative_url }})
+- Severity/役割の整理: [第5章](../../../chapters/chapter-05/)
+- 連絡/エスカレーション: [第6章](../../../chapters/chapter-06/)
+- 状況共有テンプレ: [状況共有](../status-update/)
