@@ -18,6 +18,15 @@ order: 902
 | YYYY-MM-DDThh:mm:ss+09:00 | 検知 | | | |
 | YYYY-MM-DDThh:mm:ss+09:00 | | | | |
 
+### コピペ用（Markdown table）
+
+```md
+| 時刻（RFC3339推奨） | 事象 | 判断 | 実施 | 結果 |
+|---|---|---|---|---|
+| YYYY-MM-DDThh:mm:ss+09:00 | 検知 | | | |
+| YYYY-MM-DDThh:mm:ss+09:00 | | | | |
+```
+
 ## 記入例（抜粋）
 
 | 時刻（RFC3339推奨） | 事象 | 判断 | 実施 | 結果 |

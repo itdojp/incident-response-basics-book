@@ -109,6 +109,11 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
               {%- assign _next_char = _page_url_n | slice: _cand_len, 1 -%}
               {%- if _next_char == '/' -%}
                 {%- assign _is_boundary = true -%}
+              {%- else -%}
+                {%- assign _last_char = item_url_n | slice: -1, 1 -%}
+                {%- if _last_char == '/' and item_url_n != '/' -%}
+                  {%- assign _is_boundary = true -%}
+                {%- endif -%}
               {%- endif -%}
             {%- endif -%}
 
