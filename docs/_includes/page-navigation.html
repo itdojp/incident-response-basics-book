@@ -164,11 +164,6 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
         <span class="label">前へ</span>
         <span class="title">{{ prev_page.title | default: prev_data.title | default: prev_data.label | default: previous_item.title | default: previous_item.name | default: "前のページ" | escape }}</span>
       </a>
-    {% else %}
-      <span class="nav-disabled nav-prev">
-        <span class="arrow" aria-hidden="true">←</span>
-        <span class="label">前へ</span>
-      </span>
     {% endif %}
 
     <a href="{{ '/' | relative_url }}" class="nav-home">
@@ -195,11 +190,6 @@ level of such grouping so only leaf items (having `path`/`url`) participate.
         <span class="title">{{ next_page.title | default: next_data.title | default: next_data.label | default: next_item.title | default: next_item.name | default: "次のページ" | escape }}</span>
         <span class="arrow" aria-hidden="true">→</span>
       </a>
-    {% else %}
-      <span class="nav-disabled nav-next">
-        <span class="label">次へ</span>
-        <span class="arrow" aria-hidden="true">→</span>
-      </span>
     {% endif %}
   </div>
 </nav>
