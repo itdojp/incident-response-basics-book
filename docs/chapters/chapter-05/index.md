@@ -35,8 +35,9 @@ NISTの代表的なプロセス（Preparation / Detection & Analysis / Containme
 
 | NISTフェーズ（要約） | 本書の対応 | 主に使うテンプレ |
 |---|---|---|
+| Preparation（事前準備） | （本書の範囲外）体制整備/訓練/ツール整備など | （必要に応じて）チェックリスト集、テンプレ整備 |
 | Detection & Analysis（検知/分析） | 第5章（Severity/役割）、第6章（状況共有） | インシデント記録、タイムライン、状況共有 |
-| Containment / Recovery（封じ込め/復旧） | 第7章（復旧/ロールバック判断） | 状況共有、エスカレーション |
+| Containment, Eradication & Recovery（封じ込め/駆除/復旧） | 第7章（復旧/ロールバック判断） | 状況共有、エスカレーション |
 | Post-Incident Activity（再発防止） | 第8章（ポストモーテム） | ポストモーテム |
 
 ## 具体例（場当たり→再現性）
