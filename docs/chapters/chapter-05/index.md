@@ -28,6 +28,7 @@ order: 50
 - 連絡担当: 関係者への共有
 
 Severity は“誰にどの程度影響しているか”を軸に判断する。
+Severity（P0/P1/P2/P3）の最小定義は、付録の[チェックリスト集](../../appendices/checklists/)を参照。
 
 ### NIST SP 800-61r2 との対応（概要）
 
