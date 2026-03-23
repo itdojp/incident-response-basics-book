@@ -2,6 +2,8 @@
   "title": "インシデント対応 基礎：切り分け・状況共有・復旧・ポストモーテムの型",
   "description": "トラブルシューティングからインシデント運用、連絡/復旧判断、ポストモーテムまでの基本フレームを扱う。",
   "author": "株式会社アイティードゥ",
+  "license": "CC-BY-NC-SA-4.0",
+  "repository": "https://github.com/itdojp/incident-response-basics-book",
   "version": "0.1.0",
   "structure": {
     "chapters": [
