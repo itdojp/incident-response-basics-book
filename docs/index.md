@@ -58,7 +58,8 @@ order: 0
 
 ## 利用と更新情報
 
-- ライセンス: [{{ site.license_text }}](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja)（このライセンスでは商用利用は許諾されないため、商用利用は別途許諾が必要）
+- ライセンス: [{{ site.license_text }}](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja)
+- 商用利用: CC ライセンスの範囲外のため、別途許諾が必要です。
 - 詳細なライセンス条件: [LICENSE.md]({{ site.repository }}/blob/main/LICENSE.md)
 - リポジトリ: [{{ site.repository }}]({{ site.repository }})
 - 更新差分を追う場合は、[コミット履歴]({{ site.repository }}/commits/main/) と [PR 一覧]({{ site.repository }}/pulls) を参照する
