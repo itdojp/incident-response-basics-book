@@ -34,6 +34,15 @@ npm run build
 npm test
 ```
 
+## 品質確認
+
+公開メタデータとナビゲーションの整合性は、次のコマンドで確認します。
+
+```bash
+npm run check:metadata
+npm test
+```
+
 ## ライセンス
 
 本書は **CC BY-NC-SA 4.0** で提供します。詳細は `LICENSE.md` を参照してください。
