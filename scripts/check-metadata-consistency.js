@@ -67,16 +67,22 @@ function parseTopLevelYaml(relativePath) {
 function parseFrontMatter(relativePath) {
   const text = readText(relativePath);
   if (text === null) return { data: {}, body: '' };
-  if (!text.startsWith('---\n')) {
+
+  const opening = text.match(/^\uFEFF?---\r?\n/);
+  if (!opening) {
     fail(`${relativePath}: missing YAML front matter`);
     return { data: {}, body: text };
   }
-  const end = text.indexOf('\n---', 4);
-  if (end === -1) {
+
+  const bodyStart = opening[0].length;
+  const remainder = text.slice(bodyStart);
+  const closing = remainder.match(/\r?\n---(?:\r?\n|$)/);
+  if (!closing || closing.index === undefined) {
     fail(`${relativePath}: missing closing YAML front matter delimiter`);
     return { data: {}, body: text };
   }
-  const raw = text.slice(4, end);
+
+  const raw = remainder.slice(0, closing.index);
   const data = {};
   for (const line of raw.split(/\r?\n/)) {
     const match = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
@@ -84,7 +90,7 @@ function parseFrontMatter(relativePath) {
       data[match[1]] = normalizeScalar(match[2]) || '';
     }
   }
-  return { data, body: text.slice(end + '\n---'.length) };
+  return { data, body: remainder.slice(closing.index + closing[0].length) };
 }
 
 function parseNavigation(relativePath) {
@@ -152,6 +158,7 @@ function expectedFromBookConfig(bookConfig) {
     repository: repoUrl,
     packageRepoUrl: `${repoUrl}.git`,
     repoSlug: owner && repoName ? `${owner}/${repoName}` : '',
+    repoName,
     pagesUrl: siteUrl && repoName ? `${siteUrl}/${repoName}/` : '',
     siteUrl,
     baseurl: repoName ? `/${repoName}` : '',
@@ -187,7 +194,7 @@ function expectedStructure(bookConfig) {
 
 function validatePackage(expected) {
   const pkg = readJson('package.json');
-  expectEqual('package.json name', pkg.name, 'incident-response-basics-book');
+  expectEqual('package.json name', pkg.name, expected.repoName);
   expectEqual('package.json version', pkg.version, expected.version);
   expectEqual('package.json description', pkg.description, expected.description);
   expectEqual('package.json license', pkg.license, expected.license);
