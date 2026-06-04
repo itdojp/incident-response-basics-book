@@ -13,3 +13,6 @@ vendor/bundle/
 
 # OS
 .DS_Store
+docs/_site/
+.jekyll-metadata
+docs/Gemfile.lock

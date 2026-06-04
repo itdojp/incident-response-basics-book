@@ -15,6 +15,7 @@ source_dir="docs"
 config_file="docs/_config.yml"
 
 if command -v bundle >/dev/null 2>&1; then
+  bundle check || bundle install
   if [ "$mode" = "serve" ]; then
     exec bundle exec jekyll serve --livereload --source "$source_dir" --config "$config_file"
   fi
