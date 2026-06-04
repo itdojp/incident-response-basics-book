@@ -6,17 +6,18 @@
   "scripts": {
     "start": "bash scripts/jekyll.sh serve",
     "build": "bash scripts/jekyll.sh build",
-    "test": "npm run check:metadata && npm run lint && npm run check-links",
+    "test": "npm run check:security && npm run check:metadata && npm run lint && npm run check-links",
     "lint": "markdownlint -c .markdownlint.json \"docs/**/*.md\"",
     "check-links": "find docs -name '*.md' -print0 | xargs -0 -n 1 markdown-link-check -c .markdown-link-check.json",
     "deploy": "gh-pages -d _site",
-    "check:metadata": "node scripts/check-metadata-consistency.js"
+    "check:metadata": "node scripts/check-metadata-consistency.js",
+    "check:security": "npm audit"
   },
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
-    "markdownlint-cli": "^0.45.0",
-    "markdown-link-check": "^3.13.7",
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "markdown-link-check": "^3.14.2",
+    "markdownlint-cli": "^0.48.0"
   },
   "repository": {
     "type": "git",

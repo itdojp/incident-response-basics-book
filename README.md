@@ -20,7 +20,7 @@
 ### 手順
 
 ```bash
-npm install
+npm ci
 
 # Ruby/Bundler が無い場合は Podman/Docker を利用します（初回は image pull + bundle install が走ります）
 
@@ -30,7 +30,7 @@ npm start
 # ビルド
 npm run build
 
-# テスト（markdown lint / link check）
+# テスト（npm audit / metadata / markdown lint / link check）
 npm test
 ```
 
@@ -39,6 +39,7 @@ npm test
 公開メタデータとナビゲーションの整合性は、次のコマンドで確認します。
 
 ```bash
+npm run check:security
 npm run check:metadata
 npm test
 ```
