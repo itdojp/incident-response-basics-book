@@ -25,4 +25,5 @@ appendices:
     path: "/appendices/checklists/"
   - title: "参考文献"
     path: "/appendices/references/"
-
+  - title: "図表索引"
+    path: "/appendices/figure-index/"

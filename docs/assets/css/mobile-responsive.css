@@ -10,6 +10,88 @@
   opacity: 0;
 }
 
+/* Reader-facing incident-response figures and figure index */
+.book-figure {
+  margin: 1.5rem 0;
+}
+
+.book-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.book-figure figcaption {
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.figure-text-alternative {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--primary-color);
+  background: var(--bg-secondary);
+}
+
+.figure-index-list {
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.figure-index-list li {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  overflow-wrap: anywhere;
+}
+
+.figure-index-list p {
+  margin: 0.5rem 0 0;
+}
+
+@media (max-width: 640px) {
+  .header-left {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header-title {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .header-title h1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .book-figure {
+    margin-inline: 0;
+  }
+
+  .book-layout,
+  .book-main,
+  .book-content,
+  .page-content,
+  .figure-index-list {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .figure-index-list li,
+  .figure-text-alternative {
+    padding: 0.75rem;
+  }
+}
+
 /* Prevent page jumping and unwanted focus */
 .sidebar-toggle:focus {
   outline: none;

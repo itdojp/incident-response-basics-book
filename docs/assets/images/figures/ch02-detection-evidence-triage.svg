@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="ch02-detection-title ch02-detection-desc">
+  <title id="ch02-detection-title">検知から証跡保全と安全な切り分けへ進む初動フロー</title>
+  <desc id="ch02-detection-desc">検知、影響確認、証跡保全、暫定判断、安全な切り分けを順に進め、セキュリティやプライバシーの疑いは所定窓口へエスカレーションする。</desc>
+  <defs>
+    <marker id="ch02-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect width="960" height="560" rx="20" fill="#f8fafc"/>
+  <text x="480" y="48" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="700" fill="#0f172a">初動は「直す」前に状況と証跡を固定する</text>
+
+  <rect x="40" y="100" width="170" height="180" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="125" cy="137" r="22" fill="#2563eb"/>
+  <text x="125" y="145" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">1</text>
+  <text x="125" y="185" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#1e3a8a">検知</text>
+  <text x="125" y="218" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1e3a8a">アラート・報告</text>
+  <text x="125" y="244" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1e3a8a">発生時刻を記録</text>
+
+  <rect x="275" y="100" width="170" height="180" rx="14" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <circle cx="360" cy="137" r="22" fill="#0284c7"/>
+  <text x="360" y="145" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">2</text>
+  <text x="360" y="185" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#0c4a6e">影響確認</text>
+  <text x="360" y="218" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#0c4a6e">症状と影響を分離</text>
+  <text x="360" y="244" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#0c4a6e">範囲・継続を暫定化</text>
+
+  <rect x="510" y="100" width="170" height="180" rx="14" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <circle cx="595" cy="137" r="22" fill="#d97706"/>
+  <text x="595" y="145" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">3</text>
+  <text x="595" y="185" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#78350f">証跡保全</text>
+  <text x="595" y="218" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#78350f">対象期間・取得元</text>
+  <text x="595" y="244" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#78350f">raw・権限・保管先</text>
+
+  <rect x="745" y="100" width="175" height="180" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <circle cx="832" cy="137" r="22" fill="#16a34a"/>
+  <text x="832" y="145" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">4</text>
+  <text x="832" y="185" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#14532d">安全な切り分け</text>
+  <text x="832" y="218" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#14532d">仮説と観測を対応</text>
+  <text x="832" y="244" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#14532d">可逆な検証を選択</text>
+
+  <line x1="210" y1="190" x2="264" y2="190" stroke="#334155" stroke-width="3" marker-end="url(#ch02-arrow)"/>
+  <line x1="445" y1="190" x2="499" y2="190" stroke="#334155" stroke-width="3" marker-end="url(#ch02-arrow)"/>
+  <line x1="680" y1="190" x2="734" y2="190" stroke="#334155" stroke-width="3" marker-end="url(#ch02-arrow)"/>
+
+  <rect x="130" y="340" width="700" height="92" rx="14" fill="#fff" stroke="#64748b" stroke-width="2"/>
+  <text x="480" y="374" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#0f172a">各段階でタイムラインへ記録</text>
+  <text x="480" y="405" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#334155">観測事実 ｜ 仮説 ｜ 判断 ｜ 実施 ｜ 結果 ｜ 次アクション</text>
+  <line x1="832" y1="280" x2="832" y2="326" stroke="#334155" stroke-width="3" marker-end="url(#ch02-arrow)"/>
+
+  <rect x="130" y="466" width="700" height="60" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="480" y="490" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="700" fill="#7f1d1d">セキュリティ／プライバシー疑い</text>
+  <text x="480" y="514" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#7f1d1d">影響確定を待たず、証跡を保全して所定窓口へエスカレーション</text>
+</svg>

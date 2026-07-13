@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="ch06-communication-title ch06-communication-desc">
+  <title id="ch06-communication-title">状況共有から責任経路を分けてエスカレーションする連絡フロー</title>
+  <desc id="ch06-communication-desc">確認済みの状況共有を起点に、対応調整、通知判断、対外発信を別々の責任経路へ渡し、不足する判断や支援をエスカレーションして次回更新へ反映する。</desc>
+  <defs>
+    <marker id="ch06-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect width="960" height="620" rx="20" fill="#f8fafc"/>
+  <text x="480" y="46" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="700" fill="#0f172a">連絡の目的と承認経路を混ぜない</text>
+
+  <rect x="70" y="92" width="310" height="180" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="225" y="130" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#1e3a8a">状況共有（一次情報）</text>
+  <text x="105" y="166" font-family="sans-serif" font-size="16" fill="#1e3a8a">・確認済みの状況と影響</text>
+  <text x="105" y="194" font-family="sans-serif" font-size="16" fill="#1e3a8a">・試行結果と次アクション</text>
+  <text x="105" y="222" font-family="sans-serif" font-size="16" fill="#1e3a8a">・未確定事項と必要な判断</text>
+  <text x="105" y="250" font-family="sans-serif" font-size="16" fill="#1e3a8a">・次回更新時刻</text>
+
+  <rect x="540" y="78" width="345" height="105" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="712" y="116" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#14532d">対応調整</text>
+  <text x="712" y="148" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#14532d">IC・調査・復旧・連絡担当が次手をそろえる</text>
+
+  <rect x="540" y="218" width="345" height="105" rx="14" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="712" y="256" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#78350f">通知判断</text>
+  <text x="712" y="288" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#78350f">責任者・法務・セキュリティ窓口が要否を決める</text>
+
+  <rect x="540" y="358" width="345" height="105" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="712" y="396" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#4c1d95">対外発信</text>
+  <text x="712" y="428" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4c1d95">広報・CS・責任者が承認済み情報を伝える</text>
+
+  <line x1="380" y1="145" x2="528" y2="130" stroke="#334155" stroke-width="3" marker-end="url(#ch06-arrow)"/>
+  <line x1="380" y1="182" x2="528" y2="270" stroke="#334155" stroke-width="3" marker-end="url(#ch06-arrow)"/>
+  <line x1="380" y1="220" x2="528" y2="410" stroke="#334155" stroke-width="3" marker-end="url(#ch06-arrow)"/>
+
+  <rect x="70" y="344" width="310" height="119" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="225" y="381" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#7f1d1d">エスカレーション</text>
+  <text x="225" y="413" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#7f1d1d">根拠・緊急度・必要支援</text>
+  <text x="225" y="438" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#7f1d1d">判断者・回答期限を明示</text>
+  <line x1="225" y1="272" x2="225" y2="333" stroke="#dc2626" stroke-width="3" marker-end="url(#ch06-arrow)"/>
+
+  <rect x="170" y="520" width="620" height="66" rx="14" fill="#fff" stroke="#475569" stroke-width="2"/>
+  <text x="480" y="548" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#0f172a">結果を状況共有へ反映し、約束した時刻に更新</text>
+  <text x="480" y="573" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#334155">未確認情報は確定情報と分け、ETAより次回更新時刻を優先する</text>
+  <line x1="225" y1="463" x2="316" y2="510" stroke="#334155" stroke-width="3" marker-end="url(#ch06-arrow)"/>
+  <line x1="712" y1="463" x2="645" y2="510" stroke="#334155" stroke-width="3" marker-end="url(#ch06-arrow)"/>
+  <path d="M170 553 C45 553, 35 180, 58 180" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#ch06-arrow)"/>
+</svg>

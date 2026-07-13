@@ -74,6 +74,12 @@ order: 80
 | 2 | ロールバック手順を Runbook 化（前提/手順/検証/ロールバック条件） | 復旧担当 | YYYY-MM-DD | 手順を別担当が再現でき、検証項目（指標）が揃っている |
 | 3 | DB 変更を伴うリリースの事前チェックリストを追加（不可逆変更の扱い） | 開発リード | YYYY-MM-DD | PR テンプレ/手順に組み込み、レビューで抜けが検出できる |
 
+<figure class="book-figure" id="figure-ch08-recovery-postmortem-loop">
+  <img src="../../assets/images/figures/ch08-recovery-postmortem-loop.svg" alt="復旧指標と残リスクを確認してからポストモーテムを行い、検知・手順・設計の改善を検証する継続改善ループ" loading="lazy">
+  <figcaption>図8-1: 復旧確認からポストモーテム、改善検証までのフィードバックループ</figcaption>
+</figure>
+<p class="figure-text-alternative">復旧操作の後はサービス指標、業務影響、再発兆候、残リスクを確認し、未完了事項をIssueへ分離する。確定したタイムラインと判断記録を入力としてポストモーテムを行い、検知、Runbook、設計、訓練の改善をOwner・期限・検証方法付きのアクションへ変換する。改善を実装しただけで閉じず、監視の発火や手順の再現など完了条件を確認し、結果を平時の準備へ戻す。</p>
+
 ## チェックリスト
 
 - [ ] 真因が仕組みとして説明されている

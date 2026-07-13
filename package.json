@@ -6,12 +6,14 @@
   "scripts": {
     "start": "bash scripts/jekyll.sh serve",
     "build": "bash scripts/jekyll.sh build",
-    "test": "npm run check:security && npm run check:metadata && npm run lint && npm run check-links",
+    "test": "npm run check:security && npm run check:metadata && npm run check:reader-ux && npm run check:reader-ux-regression && npm run lint && npm run check-links",
     "lint": "markdownlint -c .markdownlint.json \"docs/**/*.md\"",
     "check-links": "find docs -name '*.md' -print0 | xargs -0 -n 1 markdown-link-check -c .markdown-link-check.json",
     "deploy": "gh-pages -d _site",
     "check:metadata": "node scripts/check-metadata-consistency.js",
-    "check:security": "npm audit"
+    "check:security": "npm audit",
+    "check:reader-ux": "node scripts/check-reader-ux.js",
+    "check:reader-ux-regression": "node scripts/check-reader-ux-regression.js"
   },
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {

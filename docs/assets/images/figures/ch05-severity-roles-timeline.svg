@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="ch05-operation-title ch05-operation-desc">
+  <title id="ch05-operation-title">Severity、役割、タイムラインを連動させるインシデント運用ループ</title>
+  <desc id="ch05-operation-desc">影響からSeverityを暫定判断し、指揮、調査、連絡、記録の担当を割り当て、タイムラインの更新結果を次のSeverity見直しへ戻す。</desc>
+  <defs>
+    <marker id="ch05-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect width="960" height="600" rx="20" fill="#f8fafc"/>
+  <text x="480" y="46" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="700" fill="#0f172a">影響の変化を運用全体へ反映する</text>
+
+  <rect x="270" y="78" width="420" height="90" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="480" y="113" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#7f1d1d">暫定 Severity</text>
+  <text x="480" y="143" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#7f1d1d">影響範囲・継続時間・復旧見込み・安全上の疑い</text>
+
+  <rect x="45" y="225" width="190" height="145" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="140" y="265" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#1e3a8a">IC（指揮）</text>
+  <text x="140" y="300" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1e3a8a">優先順位・停止判断</text>
+  <text x="140" y="328" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1e3a8a">役割と次回更新を確定</text>
+
+  <rect x="272" y="225" width="190" height="145" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="367" y="265" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#14532d">調査担当</text>
+  <text x="367" y="300" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#14532d">仮説ごとに検証</text>
+  <text x="367" y="328" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#14532d">結果と残る不確実性</text>
+
+  <rect x="499" y="225" width="190" height="145" rx="14" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="594" y="265" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#78350f">連絡担当</text>
+  <text x="594" y="300" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#78350f">影響・進捗・次手</text>
+  <text x="594" y="328" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#78350f">定めた頻度で共有</text>
+
+  <rect x="726" y="225" width="190" height="145" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="821" y="265" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#4c1d95">記録係</text>
+  <text x="821" y="300" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4c1d95">事実・判断・実施</text>
+  <text x="821" y="328" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4c1d95">結果を時系列で集約</text>
+
+  <line x1="480" y1="168" x2="140" y2="214" stroke="#334155" stroke-width="2.5" marker-end="url(#ch05-arrow)"/>
+  <line x1="480" y1="168" x2="367" y2="214" stroke="#334155" stroke-width="2.5" marker-end="url(#ch05-arrow)"/>
+  <line x1="480" y1="168" x2="594" y2="214" stroke="#334155" stroke-width="2.5" marker-end="url(#ch05-arrow)"/>
+  <line x1="480" y1="168" x2="821" y2="214" stroke="#334155" stroke-width="2.5" marker-end="url(#ch05-arrow)"/>
+
+  <rect x="155" y="432" width="650" height="100" rx="16" fill="#fff" stroke="#475569" stroke-width="2"/>
+  <text x="480" y="469" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#0f172a">タイムライン（一次情報）</text>
+  <text x="480" y="502" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#334155">観測事実 ｜ 仮説・判断 ｜ 実施 ｜ 結果 ｜ 次アクション・更新時刻</text>
+  <line x1="140" y1="370" x2="235" y2="422" stroke="#334155" stroke-width="2.5" marker-end="url(#ch05-arrow)"/>
+  <line x1="367" y1="370" x2="400" y2="421" stroke="#334155" stroke-width="2.5" marker-end="url(#ch05-arrow)"/>
+  <line x1="594" y1="370" x2="560" y2="421" stroke="#334155" stroke-width="2.5" marker-end="url(#ch05-arrow)"/>
+  <line x1="821" y1="370" x2="725" y2="422" stroke="#334155" stroke-width="2.5" marker-end="url(#ch05-arrow)"/>
+
+  <path d="M805 482 C942 482, 947 120, 700 120" fill="none" stroke="#dc2626" stroke-width="3" marker-end="url(#ch05-arrow)"/>
+</svg>

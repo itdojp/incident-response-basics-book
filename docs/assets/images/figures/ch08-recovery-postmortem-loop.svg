@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 590" role="img" aria-labelledby="ch08-improvement-title ch08-improvement-desc">
+  <title id="ch08-improvement-title">復旧確認からポストモーテムと改善検証へつなぐフィードバックループ</title>
+  <desc id="ch08-improvement-desc">復旧指標と残リスクを確認し、確定記録でポストモーテムを行い、担当と期限を持つ改善を実装、効果検証して平時の準備へ戻す。</desc>
+  <defs>
+    <marker id="ch08-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect width="960" height="590" rx="20" fill="#f8fafc"/>
+  <text x="480" y="48" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="700" fill="#0f172a">復旧宣言で終わらせず、改善の効果まで確認する</text>
+
+  <rect x="55" y="105" width="190" height="175" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="150" cy="140" r="23" fill="#2563eb"/>
+  <text x="150" y="148" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">1</text>
+  <text x="150" y="185" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#1e3a8a">復旧確認</text>
+  <text x="150" y="218" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1e3a8a">サービス・業務指標</text>
+  <text x="150" y="244" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1e3a8a">再発兆候・残リスク</text>
+
+  <rect x="280" y="105" width="190" height="175" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <circle cx="375" cy="140" r="23" fill="#7c3aed"/>
+  <text x="375" y="148" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">2</text>
+  <text x="375" y="185" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#4c1d95">ポストモーテム</text>
+  <text x="375" y="218" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4c1d95">事実・分析・対応評価</text>
+  <text x="375" y="244" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4c1d95">仕組みとして真因を説明</text>
+
+  <rect x="505" y="105" width="190" height="175" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <circle cx="600" cy="140" r="23" fill="#d97706"/>
+  <text x="600" y="148" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">3</text>
+  <text x="600" y="185" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#78350f">改善を実装</text>
+  <text x="600" y="218" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#78350f">Owner・期限・完了条件</text>
+  <text x="600" y="244" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#78350f">検知・手順・設計・訓練</text>
+
+  <rect x="730" y="105" width="190" height="175" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <circle cx="825" cy="140" r="23" fill="#16a34a"/>
+  <text x="825" y="148" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">4</text>
+  <text x="825" y="185" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#14532d">効果を検証</text>
+  <text x="825" y="218" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#14532d">アラート発火・手順再現</text>
+  <text x="825" y="244" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#14532d">残課題は別Issueへ</text>
+
+  <line x1="245" y1="192" x2="269" y2="192" stroke="#334155" stroke-width="3" marker-end="url(#ch08-arrow)"/>
+  <line x1="470" y1="192" x2="494" y2="192" stroke="#334155" stroke-width="3" marker-end="url(#ch08-arrow)"/>
+  <line x1="695" y1="192" x2="719" y2="192" stroke="#334155" stroke-width="3" marker-end="url(#ch08-arrow)"/>
+
+  <rect x="190" y="355" width="580" height="106" rx="16" fill="#fff" stroke="#475569" stroke-width="2"/>
+  <text x="480" y="391" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#0f172a">平時の準備へ反映</text>
+  <text x="480" y="423" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#334155">Runbook ｜ 監視 ｜ チェックリスト ｜ 権限 ｜ 訓練計画</text>
+  <text x="480" y="447" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">変更履歴と検証証跡を残し、次回の検知・初動を速くする</text>
+
+  <path d="M825 280 C825 340, 770 380, 782 398" fill="none" stroke="#16a34a" stroke-width="3" marker-end="url(#ch08-arrow)"/>
+  <path d="M190 408 C75 408, 55 312, 112 290" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#ch08-arrow)"/>
+
+  <rect x="190" y="506" width="580" height="50" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="480" y="537" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#7f1d1d">完了条件を検証できない項目は「完了」にせず、残リスクと判断者を記録する</text>
+</svg>

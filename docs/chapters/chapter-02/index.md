@@ -55,6 +55,12 @@ order: 20
 - [ ] 誤操作を防ぐ（追加デプロイや手動操作の前に、実施者/手順/観測指標を固定。必要に応じて変更凍結）
 - [ ] 連絡を開始する（付録: [状況共有](../../appendices/templates/status-update/)。更新頻度と次回更新予定時刻を固定）
 
+<figure class="book-figure" id="figure-ch02-detection-evidence-triage">
+  <img src="../../assets/images/figures/ch02-detection-evidence-triage.svg" alt="検知後に影響を確認し、変更操作より先に証跡を保全してから安全な切り分けへ進む初動フロー" loading="lazy">
+  <figcaption>図2-1: 検知から証跡保全、影響確認、安全な切り分けまでの初動</figcaption>
+</figure>
+<p class="figure-text-alternative">アラートや利用者報告を検知したら、まず症状と影響範囲を確認する。ログや設定差分など失われ得る証跡を対象期間・取得元・加工有無とともに保全し、暫定Severityと担当を決める。その後、仮説ごとに観測可能で可逆な切り分けを行い、結果をタイムラインへ戻す。セキュリティまたはプライバシーの疑いがある場合は、影響確定を待たず所定窓口へエスカレーションする。</p>
+
 ## 具体例（場当たり→再現性）
 
 ### 悪い例（場当たり）
