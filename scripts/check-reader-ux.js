@@ -60,6 +60,13 @@ function count(text, needle) {
   return text.split(needle).length - 1;
 }
 
+function openingTagAttribute(markup, tagName, attributeName) {
+  const openingTag = markup.match(new RegExp('<' + tagName + '\\b[^>]*>', 'i'));
+  if (!openingTag) return null;
+  const attribute = openingTag[0].match(new RegExp('(?:^|\\s)' + attributeName + '="([^"]*)"'));
+  return attribute ? attribute[1] : null;
+}
+
 function walkMarkdown(dir) {
   const full = path.join(ROOT, dir);
   if (!fs.existsSync(full)) return [];
@@ -100,7 +107,11 @@ const sidebar = read('docs/_includes/sidebar-nav.html');
 const pageNavigation = read('docs/_includes/page-navigation.html');
 expect(count(nav, 'path: "/appendices/figure-index/"') === 1,
   'navigation: figure-index route must appear exactly once');
-expect(nav.indexOf('path: "/appendices/references/"') < nav.indexOf('path: "/appendices/figure-index/"'),
+expect(count(nav, 'path: "/appendices/references/"') === 1,
+  'navigation: references route must appear exactly once');
+const referencesPosition = nav.indexOf('path: "/appendices/references/"');
+const figureIndexPosition = nav.indexOf('path: "/appendices/figure-index/"');
+expect(referencesPosition !== -1 && figureIndexPosition !== -1 && referencesPosition < figureIndexPosition,
   'navigation: figure index must follow the existing appendices');
 expect(count(top, '](appendices/figure-index/)') === 2,
   'docs/index.md: figure-index link must appear exactly twice');
@@ -157,7 +168,7 @@ for (const figure of figures) {
     figure.source + ': missing stable anchor ' + figure.anchor);
   expect(count(source, '/assets/images/figures/' + figure.asset) === 1,
     figure.source + ': missing one asset reference ' + figure.asset);
-  const blockPattern = new RegExp('<figure[^>]+id="' + figure.anchor + '"[\\s\\S]*?<\\/figure>\\s*<p class="figure-text-alternative">[^<]{30,}<\\/p>');
+  const blockPattern = new RegExp('<figure\\b[^>]*\\sid="' + figure.anchor + '"[^>]*>[\\s\\S]*?<\\/figure>\\s*<p class="figure-text-alternative">[^<]{30,}<\\/p>');
   const blockMatch = source.match(blockPattern);
   expect(Boolean(blockMatch),
     figure.source + ': figure, caption and immediate text alternative are required for ' + figure.anchor);
@@ -174,10 +185,11 @@ for (const figure of figures) {
 
   const svgPath = 'docs/assets/images/figures/' + figure.asset;
   const svg = read(svgPath);
-  const labelled = svg.match(/<svg[^>]+role="img"[^>]+aria-labelledby="([^"]+)"/);
-  expect(Boolean(labelled), svgPath + ': role=img and aria-labelledby are required');
-  if (labelled) {
-    const ids = labelled[1].trim().split(/\s+/);
+  const role = openingTagAttribute(svg, 'svg', 'role');
+  const labelled = openingTagAttribute(svg, 'svg', 'aria-labelledby');
+  expect(role === 'img' && labelled !== null, svgPath + ': root svg role=img and aria-labelledby are required');
+  if (labelled !== null) {
+    const ids = labelled.trim().split(/\s+/);
     expect(ids.length === 2, svgPath + ': aria-labelledby must reference title and desc');
     expect(new Set(ids).size === ids.length, svgPath + ': title and desc ids must differ');
     expect(svg.includes('<title id="' + ids[0] + '">'), svgPath + ': labelled title is missing');
