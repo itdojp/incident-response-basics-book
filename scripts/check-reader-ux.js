@@ -63,8 +63,10 @@ function count(text, needle) {
 function openingTagAttribute(markup, tagName, attributeName) {
   const openingTag = markup.match(new RegExp('<' + tagName + '\\b[^>]*>', 'i'));
   if (!openingTag) return null;
-  const attribute = openingTag[0].match(new RegExp('(?:^|\\s)' + attributeName + '="([^"]*)"'));
-  return attribute ? attribute[1] : null;
+  const attribute = openingTag[0].match(
+    new RegExp("(?:^|\\s)" + attributeName + "\\s*=\\s*([\"'])(.*?)\\1", 'i')
+  );
+  return attribute ? attribute[2] : null;
 }
 
 function walkMarkdown(dir) {
@@ -197,7 +199,7 @@ for (const figure of figures) {
     globalLabelIds.push.apply(globalLabelIds, ids);
   }
   const svgWithoutNamespace = svg.replace('http://www.w3.org/2000/svg', '');
-  expect(!/<script\b|<foreignObject\b|<image\b|\son[a-z]+\s*=|https?:\/\//i.test(svgWithoutNamespace),
+  expect(!/<script\b|<foreignObject\b|<image\b|\son[a-z]+\s*=|(?:https?:)?\/\//i.test(svgWithoutNamespace),
     svgPath + ': scripts, external resources, event handlers and embedded images are forbidden');
 }
 expect(new Set(globalLabelIds).size === globalLabelIds.length,
@@ -229,8 +231,11 @@ expect(pkg.scripts && pkg.scripts['check:reader-ux'] === 'node scripts/check-rea
   'package.json: check:reader-ux script is missing');
 expect(pkg.scripts && pkg.scripts['check:reader-ux-regression'] === 'node scripts/check-reader-ux-regression.js',
   'package.json: check:reader-ux-regression script is missing');
-expect(pkg.scripts && String(pkg.scripts.test || '').includes('npm run check:reader-ux') &&
-  String(pkg.scripts.test || '').includes('npm run check:reader-ux-regression'),
+const testCommands = pkg.scripts ? String(pkg.scripts.test || '').split('&&').map(function (command) {
+  return command.trim();
+}) : [];
+expect(testCommands.includes('npm run check:reader-ux') &&
+  testCommands.includes('npm run check:reader-ux-regression'),
   'package.json: npm test must run both reader UX checks');
 
 if (errors.length) {
@@ -238,4 +243,4 @@ if (errors.length) {
   for (const error of errors) console.error('- ' + error);
   process.exit(1);
 }
-console.log('Reader UX check passed: 4 incident-response figures, text alternatives, anchors and index entries.');
+console.log('Reader UX check passed: ' + figures.length + ' incident-response figures, text alternatives, anchors and index entries.');

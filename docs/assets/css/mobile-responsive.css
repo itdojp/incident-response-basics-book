@@ -21,7 +21,7 @@
   height: auto;
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
-  background: #fff;
+  background: var(--bg-primary, #fff);
 }
 
 .book-figure figcaption {

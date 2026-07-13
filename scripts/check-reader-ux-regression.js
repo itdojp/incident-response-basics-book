@@ -16,9 +16,30 @@ function disableFigureIndex(text) {
   return JSON.stringify(config, null, 2) + '\n';
 }
 
+function breakFigureIndexRoute(text) {
+  const config = JSON.parse(text);
+  const appendices = config.structure && Array.isArray(config.structure.appendices)
+    ? config.structure.appendices : [];
+  const figureIndex = appendices.find(function (item) { return item.id === 'figure-index'; });
+  if (!figureIndex) return text;
+  figureIndex.path = '/appendices/figures/';
+  return JSON.stringify(config, null, 2) + '\n';
+}
+
+function removePositiveReaderUXGate(text) {
+  const pkg = JSON.parse(text);
+  pkg.scripts.test = String(pkg.scripts.test || '').split('&&').map(function (command) {
+    return command.trim();
+  }).filter(function (command) {
+    return command !== 'npm run check:reader-ux';
+  }).join(' && ');
+  return JSON.stringify(pkg, null, 2) + '\n';
+}
+
 const cases = [
-  ['missing module flag', 'book-config.json', disableFigureIndex],
-  ['broken config route', 'book-config.json', function (text) { return text.replace('"path": "/appendices/figure-index/"', '"path": "/appendices/figures/"'); }],
+  ['disabled module flag', 'book-config.json', disableFigureIndex],
+  ['broken config route', 'book-config.json', breakFigureIndexRoute],
+  ['missing positive reader UX gate', 'package.json', removePositiveReaderUXGate],
   ['missing route source', 'docs/appendices/figure-index/index.md', function () { return null; }],
   ['missing navigation route', 'docs/_data/navigation.yml', function (text) { return text.replace(/^\s*-\s*title:\s*["']図表索引["']\s*\r?\n\s*path:\s*["']\/appendices\/figure-index\/["']\s*\r?\n/m, ''); }],
   ['missing references navigation route', 'docs/_data/navigation.yml', function (text) { return text.replace(/^\s*-\s*title:\s*["']参考文献["']\s*\r?\n\s*path:\s*["']\/appendices\/references\/["']\s*\r?\n/m, ''); }],
@@ -37,6 +58,7 @@ const cases = [
   ['extra figure asset', 'docs/assets/images/figures/extra.svg', function () { return '<svg xmlns="http://www.w3.org/2000/svg"></svg>'; }],
   ['missing SVG accessibility', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('role="img"', 'role="presentation"'); }],
   ['misnamed root SVG label attribute', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('aria-labelledby=', 'data-aria-labelledby='); }],
+  ['protocol-relative SVG resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', '<a href="//example.invalid/figure"><text>external</text></a></svg>'); }],
   ['external SVG resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', '<image href="https://example.invalid/figure.png"/></svg>'); }],
   ['broken mobile rule', 'docs/assets/css/mobile-responsive.css', function (text) { return text.replace(/\.figure-index-list\s+li,\s*\r?\n\s*\.figure-text-alternative\s*\{/, '.figure-index-list li,\n  .broken-alternative {'); }],
   ['broken sidebar renderer', 'docs/_includes/sidebar-nav.html', function (text) { return text.replaceAll('navigation.appendices', 'navigation.resources_only'); }],
