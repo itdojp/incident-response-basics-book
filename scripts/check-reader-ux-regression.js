@@ -6,16 +6,22 @@ const path = require('path');
 const childProcess = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
-const SCRATCH_ROOT = path.join(ROOT, '.codex-local', 'tmp');
+const SCRATCH_ROOT = path.join(ROOT, 'node_modules', '.cache', 'reader-ux-regression');
 fs.mkdirSync(SCRATCH_ROOT, { recursive: true });
 const RUN_ROOT = fs.mkdtempSync(path.join(SCRATCH_ROOT, 'reader-ux-regression-run-'));
 
+function disableFigureIndex(text) {
+  const config = JSON.parse(text);
+  config.ux.modules.figureIndex = false;
+  return JSON.stringify(config, null, 2) + '\n';
+}
+
 const cases = [
-  ['missing module flag', 'book-config.json', function (text) { return text.replace('"figureIndex": true', '"figureIndex": false'); }],
+  ['missing module flag', 'book-config.json', disableFigureIndex],
   ['broken config route', 'book-config.json', function (text) { return text.replace('"path": "/appendices/figure-index/"', '"path": "/appendices/figures/"'); }],
   ['missing route source', 'docs/appendices/figure-index/index.md', function () { return null; }],
-  ['missing navigation route', 'docs/_data/navigation.yml', function (text) { return text.replace(/  - title: "図表索引"\r?\n    path: "\/appendices\/figure-index\/"\r?\n/, ''); }],
-  ['missing top route', 'docs/index.md', function (text) { return text.replace('- 対応の全体像を図から確認する場合は[図表索引](appendices/figure-index/)を使う\n', ''); }],
+  ['missing navigation route', 'docs/_data/navigation.yml', function (text) { return text.replace(/^\s*-\s*title:\s*["']図表索引["']\s*\r?\n\s*path:\s*["']\/appendices\/figure-index\/["']\s*\r?\n/m, ''); }],
+  ['missing top route', 'docs/index.md', function (text) { return text.replace(/^-\s*対応の全体像を図から確認する場合は\[図表索引\]\(appendices\/figure-index\/\)を使う\s*\r?\n/m, ''); }],
   ['missing figure reference', 'docs/chapters/chapter-05/index.md', function (text) { return text.replace('/assets/images/figures/ch05-severity-roles-timeline.svg', '/assets/images/ch05-severity-roles-timeline.svg'); }],
   ['missing stable anchor', 'docs/chapters/chapter-05/index.md', function (text) { return text.replace('id="figure-ch05-severity-roles-timeline"', 'id="severity-roles-timeline"'); }],
   ['missing text alternative', 'docs/chapters/chapter-05/index.md', function (text) { return text.replace('class="figure-text-alternative"', 'class="alternative"'); }],
@@ -30,7 +36,7 @@ const cases = [
   ['extra figure asset', 'docs/assets/images/figures/extra.svg', function () { return '<svg xmlns="http://www.w3.org/2000/svg"></svg>'; }],
   ['missing SVG accessibility', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('role="img"', 'role="presentation"'); }],
   ['external SVG resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', '<image href="https://example.invalid/figure.png"/></svg>'); }],
-  ['broken mobile rule', 'docs/assets/css/mobile-responsive.css', function (text) { return text.replace('.figure-index-list li,\n  .figure-text-alternative {', '.figure-index-list li,\n  .broken-alternative {'); }],
+  ['broken mobile rule', 'docs/assets/css/mobile-responsive.css', function (text) { return text.replace(/\.figure-index-list\s+li,\s*\r?\n\s*\.figure-text-alternative\s*\{/, '.figure-index-list li,\n  .broken-alternative {'); }],
   ['broken sidebar renderer', 'docs/_includes/sidebar-nav.html', function (text) { return text.replaceAll('navigation.appendices', 'navigation.resources_only'); }],
   ['broken prev-next renderer', 'docs/_includes/page-navigation.html', function (text) { return text.replace('additional,resources,appendices,afterword', 'additional,resources,afterword'); }]
 ];
