@@ -97,6 +97,15 @@ function hasNonFragmentCssUrl(markup) {
   return false;
 }
 
+function withoutStandardSvgNamespaces(markup) {
+  const openingTag = markup.match(/<svg\b[^>]*>/i);
+  if (!openingTag) return markup;
+  const stripped = openingTag[0]
+    .replace(/\sxmlns\s*=\s*(?:"http:\/\/www\.w3\.org\/2000\/svg"|'http:\/\/www\.w3\.org\/2000\/svg')/i, '')
+    .replace(/\sxmlns:xlink\s*=\s*(?:"http:\/\/www\.w3\.org\/1999\/xlink"|'http:\/\/www\.w3\.org\/1999\/xlink')/i, '');
+  return markup.slice(0, openingTag.index) + stripped + markup.slice(openingTag.index + openingTag[0].length);
+}
+
 function walkMarkdown(dir) {
   const full = path.join(ROOT, dir);
   if (!fs.existsSync(full)) return [];
@@ -221,7 +230,7 @@ for (const figure of figures) {
     expect(svg.includes('<desc id="' + ids[1] + '">'), svgPath + ': labelled desc is missing');
     globalLabelIds.push.apply(globalLabelIds, ids);
   }
-  const svgWithoutNamespace = svg.replace('http://www.w3.org/2000/svg', '');
+  const svgWithoutNamespace = withoutStandardSvgNamespaces(svg);
   const nonFragmentHref = /\s(?:href|xlink:href)\s*=\s*(?:"(?!#)[^"]*"|'(?!#)[^']*')/i.test(svgWithoutNamespace);
   expect(!/<script\b|<foreignObject\b|<image\b|\son[a-z]+\s*=|@import\b|(?:https?:)?\/\//i.test(svgWithoutNamespace) &&
     !nonFragmentHref && !hasNonFragmentCssUrl(svgWithoutNamespace),

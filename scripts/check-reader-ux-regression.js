@@ -65,7 +65,8 @@ const cases = [
   ['relative SVG resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', '<use href="other.svg#shape"/></svg>'); }],
   ['mixed-quote double href resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', "<use href=\"other's.svg#shape\"/></svg>"); }],
   ['mixed-quote single href resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', "<use href='other\"s.svg#shape'/></svg>"); }],
-  ['mixed-quote xlink href resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', "<use xlink:href=\"other's.svg#shape\"/></svg>"); }],
+  ['mixed-quote xlink href resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace(/<svg\b/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"').replace('</svg>', "<use xlink:href=\"other's.svg#shape\"/></svg>"); }],
+  ['namespaced internal xlink fragment', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace(/<svg\b/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"').replace('</svg>', '<defs><g id="reader-ux-shape"/></defs><use xlink:href="#reader-ux-shape"/></svg>'); }, 0],
   ['relative CSS SVG resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', '<rect fill="url(other.svg#paint)"/></svg>'); }],
   ['quoted relative CSS SVG resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', "<rect fill=\"url('other.svg#paint')\"/></svg>"); }],
   ['absolute CSS SVG resource', 'docs/assets/images/figures/ch05-severity-roles-timeline.svg', function (text) { return text.replace('</svg>', '<rect fill="url(https://example.invalid/paint.svg#paint)"/></svg>'); }],
@@ -89,6 +90,7 @@ for (const testCase of cases) {
   const name = testCase[0];
   const relative = testCase[1];
   const mutate = testCase[2];
+  const expectedStatus = testCase.length > 3 ? testCase[3] : 1;
   const fixture = createFixture();
   try {
     const target = path.join(fixture, relative);
@@ -115,15 +117,19 @@ for (const testCase of cases) {
       process.exitCode = 1;
       break;
     }
-    if (result.status !== 1) {
-      console.error(result.status === 0
-        ? 'Negative regression failed to reject: ' + name
-        : 'Negative regression returned unexpected status ' + result.status + ': ' + name);
+    if (result.status !== expectedStatus) {
+      console.error('Reader UX regression returned status ' + result.status +
+        ', expected ' + expectedStatus + ': ' + name);
       process.exitCode = 1;
       break;
     }
-    if (!String(result.stderr || '').includes('Reader UX check failed:')) {
+    if (expectedStatus === 1 && !String(result.stderr || '').includes('Reader UX check failed:')) {
       console.error('Negative regression did not produce a controlled checker failure: ' + name);
+      process.exitCode = 1;
+      break;
+    }
+    if (expectedStatus === 0 && !String(result.stdout || '').includes('Reader UX check passed:')) {
+      console.error('Positive regression did not produce the checker success banner: ' + name);
       process.exitCode = 1;
       break;
     }
@@ -143,4 +149,4 @@ for (const directory of [SCRATCH_ROOT, path.dirname(SCRATCH_ROOT)]) {
 }
 
 if (process.exitCode) process.exit(process.exitCode);
-console.log('Reader UX negative regression passed: ' + passed + '/' + cases.length + '.');
+console.log('Reader UX regression passed: ' + passed + '/' + cases.length + '.');
