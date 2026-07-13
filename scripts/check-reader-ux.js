@@ -69,6 +69,18 @@ function openingTagAttribute(markup, tagName, attributeName) {
   return attribute ? attribute[2] : null;
 }
 
+function hasNonFragmentCssUrl(markup) {
+  for (const match of markup.matchAll(/\burl\(\s*([^)]*?)\s*\)/gi)) {
+    let value = match[1].trim();
+    if ((value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1).trim();
+    }
+    if (!value.startsWith('#')) return true;
+  }
+  return false;
+}
+
 function walkMarkdown(dir) {
   const full = path.join(ROOT, dir);
   if (!fs.existsSync(full)) return [];
@@ -203,8 +215,8 @@ for (const figure of figures) {
   }
   const svgWithoutNamespace = svg.replace('http://www.w3.org/2000/svg', '');
   const nonFragmentHref = /\s(?:href|xlink:href)\s*=\s*(["'])(?!#)[^"']*\1/i.test(svgWithoutNamespace);
-  expect(!/<script\b|<foreignObject\b|<image\b|\son[a-z]+\s*=|(?:https?:)?\/\//i.test(svgWithoutNamespace) &&
-    !nonFragmentHref,
+  expect(!/<script\b|<foreignObject\b|<image\b|\son[a-z]+\s*=|@import\b|(?:https?:)?\/\//i.test(svgWithoutNamespace) &&
+    !nonFragmentHref && !hasNonFragmentCssUrl(svgWithoutNamespace),
     svgPath + ': scripts, external resources, event handlers and embedded images are forbidden');
 }
 expect(new Set(globalLabelIds).size === globalLabelIds.length,
