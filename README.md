@@ -30,7 +30,7 @@ npm start
 # ビルド
 npm run build
 
-# テスト（npm audit / metadata / markdown lint / link check）
+# テスト（npm audit / metadata / reader UX + regression / markdown lint / link check）
 npm test
 ```
 
@@ -41,8 +41,12 @@ npm test
 ```bash
 npm run check:security
 npm run check:metadata
+npm run check:reader-ux
+npm run check:reader-ux-regression
 npm test
 ```
+
+`check:reader-ux` は、公開図表4件、stable anchor、文章代替、章順の図表索引、reader navigation の一対一対応を検証します。`check:reader-ux-regression` は、必須要素を壊したfixtureを制御された失敗として拒否し、標準名前空間付きの内部SVG fragmentを受理することを検証します。
 
 ## ライセンス
 

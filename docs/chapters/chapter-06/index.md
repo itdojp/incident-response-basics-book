@@ -74,6 +74,12 @@ Severity: 暫定 P1
 
 注: セキュリティ疑いがある場合は、影響の確定を待たず証跡保全と所定窓口へのエスカレーションを優先する（組織の手順に従う）。
 
+<figure class="book-figure" id="figure-ch06-communication-escalation">
+  <img src="../../assets/images/figures/ch06-communication-escalation.svg" alt="状況共有を一次情報として対応調整、通知判断、対外広報を分け、必要な支援へエスカレーションする連絡フロー" loading="lazy">
+  <figcaption>図6-1: 状況共有とエスカレーションの責任経路</figcaption>
+</figure>
+<p class="figure-text-alternative">確認済みの状況、影響、試行結果、次アクション、次回更新時刻を状況共有へ集約する。そこからICによる対応調整、責任者や法務・プライバシー窓口による通知判断、広報・CSによる対外発信を別の責任経路として扱う。判断権限や専門知識が不足する場合は、根拠、緊急度、必要な支援、回答期限を添えてエスカレーションし、結果を次の状況共有へ反映する。</p>
+
 ## 具体例（場当たり→再現性）
 
 ### 悪い例（場当たり）

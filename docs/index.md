@@ -32,6 +32,7 @@ order: 0
 - 続けて第2章と[チェックリスト集](appendices/checklists/)で情報収集の粒度をそろえる
 - 迷ったら[テンプレ集](appendices/templates/)を使い、状況共有の書式を固定する
 - セキュリティ/プライバシー疑いがある場合は、影響確定を待たず証跡保全と所定窓口へのエスカレーションを先行する
+- 対応の全体像を図から確認する場合は[図表索引](appendices/figure-index/)を使う
 
 ## 読み方ガイド
 
@@ -61,6 +62,7 @@ order: 0
 - [テンプレ集](appendices/templates/)
 - [チェックリスト集](appendices/checklists/)
 - [参考文献](appendices/references/)
+- [図表索引](appendices/figure-index/)
 
 ## 利用と更新情報
 

@@ -63,6 +63,12 @@ Severity は一度決めたら固定ではない。次の条件で上げ下げ�
 | --- | --- | --- | --- | --- |
 | 2026-02-24T10:12:00+09:00 | 検知 | 暫定 P1 | IC 任命 | 次回更新 10:27 JST |
 
+<figure class="book-figure" id="figure-ch05-severity-roles-timeline">
+  <img src="../../assets/images/figures/ch05-severity-roles-timeline.svg" alt="影響からSeverityを暫定判断し、指揮・調査・連絡・記録の役割とタイムライン更新を循環させる運用図" loading="lazy">
+  <figcaption>図5-1: Severity、役割分担、タイムラインを連動させる運用ループ</figcaption>
+</figure>
+<p class="figure-text-alternative">影響範囲と継続時間からSeverityを暫定判断し、ICが優先順位を決める。調査担当は仮説を検証し、連絡担当は定めた頻度で状況を共有し、記録係は観測事実・判断・実施・結果をタイムラインへ集約する。新しい影響や復旧見込みの変化があればSeverityと役割、次回更新時刻を見直し、同じループを継続する。</p>
+
 ### NIST SP 800-61 Rev. 3 との対応（概要）
 
 NIST SP 800-61 Rev. 3 は、従来のフェーズ説明だけでなく、NIST CSF 2.0 の Govern / Identify / Protect / Detect / Respond / Recover に沿ってインシデント対応をリスク管理全体へ組み込む考え方を示している。本書では初学者向けに手順順の章立てを保ちつつ、次の対応関係で運用する。
