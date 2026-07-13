@@ -140,12 +140,10 @@ for (const testCase of cases) {
 }
 
 fs.rmSync(RUN_ROOT, { recursive: true, force: true });
-for (const directory of [SCRATCH_ROOT, path.dirname(SCRATCH_ROOT)]) {
-  try {
-    fs.rmdirSync(directory);
-  } catch (error) {
-    if (error.code !== 'ENOENT' && error.code !== 'ENOTEMPTY') throw error;
-  }
+try {
+  fs.rmdirSync(SCRATCH_ROOT);
+} catch (error) {
+  if (error.code !== 'ENOENT' && error.code !== 'ENOTEMPTY') throw error;
 }
 
 if (process.exitCode) process.exit(process.exitCode);
