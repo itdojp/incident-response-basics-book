@@ -29,4 +29,5 @@ order: 906
 
 - Severity/役割の整理: [第5章](../../../chapters/chapter-05/)
 - 連絡/エスカレーション: [第6章](../../../chapters/chapter-06/)
+- セキュリティ疑い時の封じ込め・根絶・復旧: [第7章](../../../chapters/chapter-07/)
 - 状況共有テンプレ: [状況共有](../status-update/)
