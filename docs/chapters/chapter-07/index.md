@@ -34,7 +34,7 @@ order: 70
 
 ロールバック、機能フラグ OFF、通信遮断で影響が止まっても、それだけでは根絶完了ではない。根絶が未完了のまま限定的に再開する場合は、補完統制、承認者、監視条件、停止条件、期限、残リスクを記録し、インシデントを close しない。
 
-[NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final) は、旧モデルの Containment, Eradication & Recovery を CSF 2.0 の Respond / Recover と Identify 配下の Improvement Category に対応付ける。教訓は全Functionの活動から Improvement へ集約し、全Functionの改善へ反映する。本書の3段階は、この対応関係を初学者が運用判断へ落とし込むための最小分解であり、製品別の実装手順ではない。
+[NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final) の Table 1 は、旧モデルの Containment, Eradication & Recovery を CSF 2.0 の Respond / Recover と、Identify 配下の Improvement Category に対応付ける。本書では、封じ込め・根絶・復旧の3段階を Respond / Recover における運用判断の最小分解として扱う。Improvement は4番目の完了段階ではなく、全Functionの活動から得た教訓を集約し、全Functionの改善へ反映する別の区分である。製品別の実装手順は扱わない。
 
 #### セキュリティ疑い時の再開前後確認
 
